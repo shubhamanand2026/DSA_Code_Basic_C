@@ -21,6 +21,13 @@ struct Node *InsertAtIndex(struct Node *head, int data, int index)
     struct Node *p = head;
     struct Node *ptr = (struct Node *)malloc(sizeof(struct Node));
 
+    if (index == 0)
+    {
+        ptr->data = data;
+        ptr->next = head;
+        return ptr;
+    }
+
     int i = 0;
     while (i != (index - 1))
     {
