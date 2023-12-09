@@ -16,28 +16,18 @@ void Traversal(struct Node *ptr)
     }
 }
 
-struct Node *DeleteAtIndex(struct Node *head, int index)
+struct Node *DeleteAtLast(struct Node *head)
 {
-    struct Node *p = head;
-    int i = 0;
-    if (index == 0)
+    struct Node *ptr = head;
+    struct Node *q = head->next;
+    while (q->next != NULL)
     {
-        head = head->next;
-        free(p);
-        return head;
+        ptr = ptr->next;
+        q = q->next;
     }
-    else
-    {
-        while (i < (index - 1))
-        {
-            p = p->next;
-            i++;
-        }
-        struct Node *q = p->next;
-        p->next = q->next;
-        free(q);
-        return head;
-    }
+    ptr->next = NULL;
+    free(q);
+    return head;
 }
 
 int main()
@@ -61,7 +51,7 @@ int main()
 
     Traversal(head);
     printf("\n");
-    head = DeleteAtIndex(head, 3);
+    head = DeleteAtLast(head);
     Traversal(head);
     return 0;
 }
